@@ -22,7 +22,7 @@
       "plugin": "users-permissions",
       "model": "user",
       "via": "portfolios",
-      "private": "true"
+      "private": true
     }
   }
 }
