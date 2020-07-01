@@ -1,26 +1,75 @@
 import React from 'react';
-import logo from './logo.svg';
+import axios from 'axios'
 import './App.css';
+import PortfolioItem from './components/PortfolioItem'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+//Our Goals
+//Given the portfolio items, render them on screen
+//Make a Ajax (with Axios) reauest to get the portfolio items from the server (Strapi)
+
+const exampleEntries = [
+  {
+      "id": 1,
+      "title": "Everything is Gold",
+      "description": "Life is gold like a machine, \nbuy a watch just to flex.",
+      "background": "#ffd700",
+      "created_at": "2020-01-16T22:54:37.977Z",
+      "updated_at": "2020-01-16T22:54:47.844Z"
+  },
+  {
+      "id": 2,
+      "title": "Red is Passion",
+      "description": "Passion is fire\nFire is lit\nPoop emoji",
+      "background": "#f03434",
+      "created_at": "2020-01-16T22:55:12.410Z",
+      "updated_at": "2020-01-16T22:55:12.414Z"
+  }
+]
+
+//const data = ["Hey", "Now", "You're a pilot"]
+
+class App extends React.Component{
+  state = {
+    data: []
+  }
+
+  async componentDidMount(){
+    console.log("componentDidMount")
+    const portfolio_response = await axios({
+      method: 'GET',
+      url: 'http://localhost:1337/portfolios?user=1'
+    })
+
+    const {data} = portfolio_response
+    console.log("App.componentDidMount data", data)
+    this.setState({data})
+
+  }
+  
+  
+  render(){
+    return (
+      <div className="App">
+       {this.state.data.map(entry => {
+         return(
+           <PortfolioItem title={entry.title} description={entry.description} background={entry.background}/>
+         )
+       })}
+      </div>
+    );
+  }
 }
+
+// function App() {
+//   return (
+//     <div className="App">
+//      {exampleEntries.map(entry => {
+//        return(
+//          <PortfolioItem title={entry.title} description={entry.description} background={entry.background}/>
+//        )
+//      })}
+//     </div>
+//   );
+// }
 
 export default App;

@@ -28285,7 +28285,7 @@ if ("development" === 'production') {
 } else {
   module.exports = require('./cjs/react-dom.development.js');
 }
-},{"./cjs/react-dom.development.js":"node_modules/react-dom/cjs/react-dom.development.js"}],"src/component/Header.js":[function(require,module,exports) {
+},{"./cjs/react-dom.development.js":"node_modules/react-dom/cjs/react-dom.development.js"}],"src/App.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -28297,21 +28297,13 @@ var _react = _interopRequireDefault(require("react"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-//import ParcelLogo from "../img/parcel-logo.svg";
-var Header = function Header() {
-  return _react.default.createElement("header", null, _react.default.createElement("nav", {
-    className: "navbar",
-    role: "navigation",
-    "aria-label": "main navigation"
-  }, _react.default.createElement("div", {
-    className: "navbar-brand"
-  }, _react.default.createElement("a", {
-    className: "navbar-item",
-    href: "/"
-  }))));
-};
+function App() {
+  return _react.default.createElement("div", {
+    className: "App"
+  }, "Hey, you are a pilot");
+}
 
-var _default = Header;
+var _default = App;
 exports.default = _default;
 },{"react":"node_modules/react/index.js"}],"src/index.js":[function(require,module,exports) {
 "use strict";
@@ -28320,61 +28312,19 @@ var _react = _interopRequireDefault(require("react"));
 
 var _reactDom = _interopRequireDefault(require("react-dom"));
 
-var _Header = _interopRequireDefault(require("./component/Header"));
+var _App = _interopRequireDefault(require("./App"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+//import './index.css';
+//import * as serviceWorker from './serviceWorker';
+_reactDom.default.render(_react.default.createElement(_react.default.StrictMode, null, _react.default.createElement(_App.default, null)), document.getElementById('root')); // If you want your app to work offline and load faster, you can change
+// unregister() to register() below. Note this comes with some pitfalls.
+// Learn more about service workers: https://bit.ly/CRA-PWA
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-var HelloMessage = /*#__PURE__*/function (_React$Component) {
-  _inherits(HelloMessage, _React$Component);
-
-  var _super = _createSuper(HelloMessage);
-
-  function HelloMessage() {
-    _classCallCheck(this, HelloMessage);
-
-    return _super.apply(this, arguments);
-  }
-
-  _createClass(HelloMessage, [{
-    key: "render",
-    value: function render() {
-      return _react.default.createElement("div", null, _react.default.createElement(_Header.default, null), _react.default.createElement("div", {
-        className: "container"
-      }, _react.default.createElement("h1", null, "Hello ", this.props.name)));
-    }
-  }]);
-
-  return HelloMessage;
-}(_react.default.Component);
-
-var App = document.getElementById("app");
-
-_reactDom.default.render(_react.default.createElement(HelloMessage, {
-  name: "Sohail"
-}), App);
-},{"react":"node_modules/react/index.js","react-dom":"node_modules/react-dom/index.js","./component/Header":"src/component/Header.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+serviceWorker.unregister();
+},{"react":"node_modules/react/index.js","react-dom":"node_modules/react-dom/index.js","./App":"src/App.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
