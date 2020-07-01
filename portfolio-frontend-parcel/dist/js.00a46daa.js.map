@@ -1,0 +1,1 @@
+{"version":3,"sources":["js/lib/test.js","js/index.js"],"names":["console","log"],"mappings":";;ACAA;;;;AAEA;ADFe,oBAAY;AAC1BA,EAAAA,OAAO,CAACC,GAAR,CAAY,IAAZ;AACA","file":"js.00a46daa.js","sourceRoot":"..","sourcesContent":["export default function () {\n\tconsole.log('Hi')\n}","import func from './lib/test'\n\nfunc()"]}
