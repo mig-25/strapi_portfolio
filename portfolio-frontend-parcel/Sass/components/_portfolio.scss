@@ -1,0 +1,14 @@
+.PortfolioItem{
+    display: flex;
+  
+    height: 100vh;
+    width: 100vw;
+  }
+  
+  .PortfolioItem__textBox:nth-child(odd){
+    align-self: flex-start;
+  }
+  
+  .PortfolioItem__textBox:nth-child(even){
+    align-self: flex-end;
+  }

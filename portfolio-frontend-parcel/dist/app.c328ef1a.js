@@ -28285,7 +28285,89 @@ if ("development" === 'production') {
 } else {
   module.exports = require('./cjs/react-dom.development.js');
 }
-},{"./cjs/react-dom.development.js":"node_modules/react-dom/cjs/react-dom.development.js"}],"src/App.js":[function(require,module,exports) {
+},{"./cjs/react-dom.development.js":"node_modules/react-dom/cjs/react-dom.development.js"}],"images/300.jpg":[function(require,module,exports) {
+module.exports = "/300.7a9004b4.jpg";
+},{}],"images/user.jpg":[function(require,module,exports) {
+module.exports = "/user.25955447.jpg";
+},{}],"images/heart-solid.svg":[function(require,module,exports) {
+module.exports = "/heart-solid.44019ac7.svg";
+},{}],"images/share-solid.svg":[function(require,module,exports) {
+module.exports = "/share-solid.604f7680.svg";
+},{}],"images/retweet-solid.svg":[function(require,module,exports) {
+module.exports = "/retweet-solid.bf12d540.svg";
+},{}],"node_modules/parcel/src/builtins/bundle-url.js":[function(require,module,exports) {
+var bundleURL = null;
+
+function getBundleURLCached() {
+  if (!bundleURL) {
+    bundleURL = getBundleURL();
+  }
+
+  return bundleURL;
+}
+
+function getBundleURL() {
+  // Attempt to find the URL of the current script and use that as the base URL
+  try {
+    throw new Error();
+  } catch (err) {
+    var matches = ('' + err.stack).match(/(https?|file|ftp|chrome-extension|moz-extension):\/\/[^)\n]+/g);
+
+    if (matches) {
+      return getBaseURL(matches[0]);
+    }
+  }
+
+  return '/';
+}
+
+function getBaseURL(url) {
+  return ('' + url).replace(/^((?:https?|file|ftp|chrome-extension|moz-extension):\/\/.+)\/[^/]+$/, '$1') + '/';
+}
+
+exports.getBundleURL = getBundleURLCached;
+exports.getBaseURL = getBaseURL;
+},{}],"node_modules/parcel/src/builtins/css-loader.js":[function(require,module,exports) {
+var bundle = require('./bundle-url');
+
+function updateLink(link) {
+  var newLink = link.cloneNode();
+
+  newLink.onload = function () {
+    link.remove();
+  };
+
+  newLink.href = link.href.split('?')[0] + '?' + Date.now();
+  link.parentNode.insertBefore(newLink, link.nextSibling);
+}
+
+var cssTimeout = null;
+
+function reloadCSS() {
+  if (cssTimeout) {
+    return;
+  }
+
+  cssTimeout = setTimeout(function () {
+    var links = document.querySelectorAll('link[rel="stylesheet"]');
+
+    for (var i = 0; i < links.length; i++) {
+      if (bundle.getBaseURL(links[i].href) === bundle.getBundleURL()) {
+        updateLink(links[i]);
+      }
+    }
+
+    cssTimeout = null;
+  }, 50);
+}
+
+module.exports = reloadCSS;
+},{"./bundle-url":"node_modules/parcel/src/builtins/bundle-url.js"}],"sass/app.scss":[function(require,module,exports) {
+var reloadCSS = require('_css_loader');
+
+module.hot.dispose(reloadCSS);
+module.hot.accept(reloadCSS);
+},{"_css_loader":"node_modules/parcel/src/builtins/css-loader.js"}],"components/PortfolioItem.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -28297,34 +28379,189 @@ var _react = _interopRequireDefault(require("react"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function App() {
-  return _react.default.createElement("div", {
-    className: "App"
-  }, "Hey, you are a pilot");
+function PortfolioItem(props) {
+  return /*#__PURE__*/_react.default.createElement("div", {
+    className: "PortfolioItem",
+    style: {
+      background: props.background
+    }
+  }, /*#__PURE__*/_react.default.createElement("div", {
+    className: "PortfolioItem__textBox"
+  }, /*#__PURE__*/_react.default.createElement("h1", null, props.title), /*#__PURE__*/_react.default.createElement("h2", null, props.description)));
 }
 
-var _default = App;
+var _default = PortfolioItem;
 exports.default = _default;
-},{"react":"node_modules/react/index.js"}],"src/index.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js"}],"app.js":[function(require,module,exports) {
 "use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
 
 var _react = _interopRequireDefault(require("react"));
 
 var _reactDom = _interopRequireDefault(require("react-dom"));
 
-var _App = _interopRequireDefault(require("./App"));
+var _ = _interopRequireDefault(require("./images/300.jpg"));
+
+var _user = _interopRequireDefault(require("./images/user.jpg"));
+
+var _heartSolid = _interopRequireDefault(require("./images/heart-solid.svg"));
+
+var _shareSolid = _interopRequireDefault(require("./images/share-solid.svg"));
+
+var _retweetSolid = _interopRequireDefault(require("./images/retweet-solid.svg"));
+
+require("./sass/app.scss");
+
+var _PortfolioItem = _interopRequireDefault(require("./components/PortfolioItem"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-//import './index.css';
-//import * as serviceWorker from './serviceWorker';
-_reactDom.default.render(_react.default.createElement(_react.default.StrictMode, null, _react.default.createElement(_App.default, null)), document.getElementById('root')); // If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+//Our Goals
+//Given the portfolio items, render them on screen
+//Make a Ajax (with Axios) reauest to get the portfolio items from the server (Strapi)
+var exampleEntries = [{
+  "id": 1,
+  "title": "Everything is Gold",
+  "description": "Life is gold like a machine, \nbuy a watch just to flex.",
+  "background": "#ffd700",
+  "created_at": "2020-01-16T22:54:37.977Z",
+  "updated_at": "2020-01-16T22:54:47.844Z"
+}, {
+  "id": 2,
+  "title": "Red is Passion",
+  "description": "Passion is fire\nFire is lit\nPoop emoji",
+  "background": "#f03434",
+  "created_at": "2020-01-16T22:55:12.410Z",
+  "updated_at": "2020-01-16T22:55:12.414Z"
+}]; //const data = ["Hey", "Now", "You're a pilot"]
+
+var App = /*#__PURE__*/function (_React$Component) {
+  _inherits(App, _React$Component);
+
+  var _super = _createSuper(App);
+
+  function App() {
+    var _this;
+
+    _classCallCheck(this, App);
+
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    _this = _super.call.apply(_super, [this].concat(args));
+
+    _defineProperty(_assertThisInitialized(_this), "state", {
+      data: []
+    });
+
+    return _this;
+  }
+
+  _createClass(App, [{
+    key: "componentDidMount",
+    value: function () {
+      var _componentDidMount = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
+        var portfolio_response, data;
+        return regeneratorRuntime.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                console.log("componentDidMount");
+                _context.next = 3;
+                return axios({
+                  method: 'GET',
+                  url: 'http://localhost:1337/portfolios?user=1'
+                });
+
+              case 3:
+                portfolio_response = _context.sent;
+                data = portfolio_response.data;
+                console.log("App.componentDidMount data", data);
+                this.setState({
+                  data: data
+                });
+
+              case 7:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, this);
+      }));
+
+      function componentDidMount() {
+        return _componentDidMount.apply(this, arguments);
+      }
+
+      return componentDidMount;
+    }()
+  }, {
+    key: "render",
+    value: function render() {
+      return /*#__PURE__*/_react.default.createElement("div", {
+        className: "App"
+      }, this.state.data.map(function (entry) {
+        return /*#__PURE__*/_react.default.createElement(_PortfolioItem.default, {
+          title: entry.title,
+          description: entry.description,
+          background: entry.background
+        });
+      }));
+    }
+  }]);
+
+  return App;
+}(_react.default.Component); // function App() {
+//   return (
+//     <div className="App">
+//      {exampleEntries.map(entry => {
+//        return(
+//          <PortfolioItem title={entry.title} description={entry.description} background={entry.background}/>
+//        )
+//      })}
+//     </div>
+//   );
+// }
 
 
-serviceWorker.unregister();
-},{"react":"node_modules/react/index.js","react-dom":"node_modules/react-dom/index.js","./App":"src/App.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+var _default = App;
+exports.default = _default;
+
+_reactDom.default.render( /*#__PURE__*/_react.default.createElement(App, null), document.getElementById("app"));
+},{"react":"node_modules/react/index.js","react-dom":"node_modules/react-dom/index.js","./images/300.jpg":"images/300.jpg","./images/user.jpg":"images/user.jpg","./images/heart-solid.svg":"images/heart-solid.svg","./images/share-solid.svg":"images/share-solid.svg","./images/retweet-solid.svg":"images/retweet-solid.svg","./sass/app.scss":"sass/app.scss","./components/PortfolioItem":"components/PortfolioItem.js"}],"node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -28352,7 +28589,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50587" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58639" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
@@ -28528,5 +28765,5 @@ function hmrAcceptRun(bundle, id) {
     return true;
   }
 }
-},{}]},{},["node_modules/parcel-bundler/src/builtins/hmr-runtime.js","src/index.js"], null)
-//# sourceMappingURL=/src.a2b27638.js.map
+},{}]},{},["node_modules/parcel/src/builtins/hmr-runtime.js","app.js"], null)
+//# sourceMappingURL=/app.c328ef1a.js.map
